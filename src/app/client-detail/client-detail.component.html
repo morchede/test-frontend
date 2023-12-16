@@ -1,0 +1,96 @@
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- En-tête du modal -->
+      <div class="modal-header">
+        <h4 class="modal-title">Détails du Client</h4>
+        <button type="button" class="btn btn-default close-button" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <label class="form-label">
+            <input type="text" class="form-control" id="paied" name="paied" required
+                   [ngModel]="!paied ? 'Il a tout payé' : 'Il reste une somme à payer'" readonly
+                   [ngClass]="{'input-success': paied, 'input-danger': !paied}">
+          </label>
+          
+          
+          
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+          <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="client.nomCl" name="nom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="prenom">Prénom:</label>
+            <input type="text" class="form-control" id="prenom" [(ngModel)]="client.prenomCl" name="prenom" required>
+          </div>
+
+          <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" class="form-control" id="adresse" [(ngModel)]="client.adresseCl" name="adresse" required>
+          </div>
+
+          <div class="form-group custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="actif" [(ngModel)]="client.actif" name="actif">
+            <label class="custom-control-label" for="actif">Actif</label>
+          </div>
+
+          <div class="form-group">
+            <label for="tel">Téléphone:</label>
+            <input type="tel" class="form-control" id="tel" [(ngModel)]="client.numeroTelCl" name="tel" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="client.emailCl" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="remainingAmount">Remaining Amount:</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="remainingAmount" name="remainingAmount" required
+                [(ngModel)]="RemainingAmount" readonly>
+              <div class="input-group-append">
+                <span class="input-group-text">$</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="year" style="display: flex; align-items: center;">
+              <i class="fas fa-calendar-alt" style="margin-right: 8px;"></i> Année:
+            </label>
+            <select class="form-control" id="year" name="year" [(ngModel)]="selectedYear" (change)="onYearChange()">
+              <option value="tout">--sélectionnée une Année</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="tout">Tout</option>
+            </select>
+          </div>
+          
+
+          <div class="form-group">
+            <label for="RevenueByClientAndYear">Total Revenue:</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="RevenueByClientAndYear" name="RevenueByClientAndYear"
+                [(ngModel)]="RevenueByClientAndYear" readonly>
+              <div class="input-group-append">
+                <span class="input-group-text">$</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- Pied du modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" routerLink="/clients" (click)="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

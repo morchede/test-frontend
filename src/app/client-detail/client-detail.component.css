@@ -1,0 +1,22 @@
+.input-success {
+    background-color: #d4edda; /* Set a light green background for success */
+    color: #155724; /* Set text color for success */
+  }
+  
+  .input-danger {
+    background-color: #f8d7da; /* Set a light red background for danger */
+    color: #721c24; /* Set text color for danger */
+  }
+  
+  .form-label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the content horizontally */
+    margin-top: 10px; /* Add some space above the input group */
+  }
+  
+  .input-group {
+    width: 100%;
+  }
+  

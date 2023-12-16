@@ -1,0 +1,58 @@
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display': display}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- En-tête du modal -->
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Client</h4>
+        <button type="button" class="btn btn-default" aria-label="Close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <form (submit)="updateClient()">
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+          <div class="form-group">
+            <label for="nom">Nom:</label>
+            <input type="text" class="form-control" id="nom" [(ngModel)]="client.nomCl" name="nom" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="prenom">Prénom:</label>
+            <input type="text" class="form-control" id="prenom" [(ngModel)]="client.prenomCl" name="prenom" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="adresse">Adresse:</label>
+            <input type="text" class="form-control" id="adresse" [(ngModel)]="client.adresseCl" name="adresse" required>
+          </div>
+          <br>
+          <div class="custom-control custom-switch d-flex align-items-center">
+           <span style="margin-right: 10px;"> <label class="custom-control-label mr-2" for="actif">Actif :</label></span>
+            <span><input type="checkbox" class="custom-control-input" id="actif" [(ngModel)]="client.actif" name="actif"></span>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="tel">Téléphone:</label>
+            <input type="text" class="form-control" id="tel" [(ngModel)]="client.numeroTelCl" name="tel" required>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" [(ngModel)]="client.emailCl" name="email" required>
+          </div>
+          
+          <br />
+          <!-- Disable the submit button if the form is invalid -->
+          <div style="display: flex; justify-content: center; align-items: center; ">
+            <button type="submit" class="btn btn-dark" style="margin-right: 10px; min-width: 100px;"><i class="bi bi-person-fill-up"></i></button>
+          </div>
+        </form>
+      </div>
+      <!-- Pied du modal -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" routerLink="/clients" (click)="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>

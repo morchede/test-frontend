@@ -1,0 +1,72 @@
+<div class="container">
+  <br>
+  <h1>Les Clients</h1>
+  <div>
+    <form class="d-flex">
+      <!-- Recherche par nom -->
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-person-check-fill"></i></span>
+        <input type="text" class="form-control" placeholder="Rechercher par Nom" aria-label="Nom" aria-describedby="addon-wrapping" matInput
+          (keyup)="filter($event, 'nomCl')" maxlength="50">
+      </div>
+
+      <!-- Recherche par adresseClient -->
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-house-fill"></i></span>
+        <input type="text" class="form-control" placeholder="Rechercher par Adresse" aria-label="Adresse" aria-describedby="addon-wrapping" matInput
+          (keyup)="filter($event, 'adresseCl')" maxlength="100">
+      </div>
+
+      <!-- Recherche par tel -->
+      <div class="input-group flex-nowrap">
+        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-telephone-fill"></i></span>
+        <input type="text" class="form-control" placeholder="Rechercher par Téléphone" aria-label="Téléphone" aria-describedby="addon-wrapping" matInput
+          (keyup)="filter($event, 'numeroTelCl')" maxlength="20">
+      </div>
+    </form>
+  </div>
+  <br>
+  <!-- Bootstrap Table -->
+  <table class="table table-striped table-bordered" style="width: 100%;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Adresse</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actif</th>
+        <th>Action</th> <!-- New column for actions -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients; let i = index" class="client-row">
+        <td>{{ client.idCl }}</td>
+        <td>{{ client.nomCl }}</td>
+        <td>{{ client.prenomCl }}</td>
+        <td>{{ client.adresseCl }}</td>
+        <td>{{ client.emailCl }}</td>
+        <td>{{ client.numeroTelCl }}</td>
+        <td>
+          <span [innerHTML]="client.actif ? '<i class=\'bi bi-check text-success icon-large\'></i>Actif' : '<i class=\'bi bi-x text-danger icon-large\'></i>Not'"></span>
+        </td>
+        
+        <td>
+          <button class="btn btn-dark mr-2" [routerLink]="['/app-client-detail', client.idCl]" routerLinkActive="active">
+            <i class="bi bi-info-circle" style="color:rgb(203, 189, 189)"></i>
+          </button>
+         
+          <button class="btn btn-dark" (click)="navigateToEdit(client.idCl)">
+            <i class="bi bi-pencil-square" style="color:rgb(203, 189, 189)"></i>
+          </button>
+          <button class="btn btn-dark mr-7" (click)="handleDeleteCustomer(client.idCl)">
+            <i class="bi bi-trash-fill" style="color:rgb(203, 189, 189)"></i>
+          </button>
+          <router-outlet></router-outlet>
+        </td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
